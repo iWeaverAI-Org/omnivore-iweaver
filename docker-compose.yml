@@ -138,7 +138,7 @@ services:
       - REST_BACKEND_ENDPOINT=http://api:8080/api
       - REDIS_URL=redis://localhost:6379
     depends_on:
-      redis:
+      redis_6379:
         condition: service_healthy
       api:
         condition: service_healthy
