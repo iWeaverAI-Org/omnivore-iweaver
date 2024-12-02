@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as dotenv from 'dotenv'
 import os from 'os'
+import path from 'path'
 
 interface redisConfig {
   url?: string
@@ -223,7 +224,12 @@ interface Dict<T> {
 
 export function getEnv(): BackendEnv {
   // Dotenv parses env file merging into proces.env which is then read into custom struct here.
-  dotenv.config()
+
+  if (process.env.NODE_ENV === 'local') {
+    dotenv.config({ path: path.join(__dirname, '../.env.local') })
+  } else {
+    dotenv.config()
+  }
 
   /* If not in GAE and Prod/QA/Demo env (f.e. on localhost/dev env), allow following env vars to be null */
   if (process.env.API_ENV == 'local') {

@@ -32,7 +32,7 @@ package-lock.json
 
 # dotenv environment variables file
 .env
-.env.local
+# .env.local
 .env.production
 
 
@@ -69,5 +69,8 @@ data.json
 # android
 *.aab
 *.apk
+
+# local
+docker-compose-local.yml
 
 tsconfig.tsbuildinfo
