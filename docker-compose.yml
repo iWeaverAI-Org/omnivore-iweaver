@@ -73,6 +73,14 @@ services:
       postgres:
         condition: service_healthy
 
+  redis:
+    image: "redis:7.2.4"
+    container_name: "omnivore-redis"
+    ports:
+      - "6479:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+
   api:
     build:
       context: .
@@ -143,10 +151,4 @@ services:
       api:
         condition: service_healthy
 
-  redis:
-    image: "redis:7.2.4"
-    container_name: "omnivore-redis"
-    ports:
-      - "6479:6379"
-    healthcheck:
-      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+  
