@@ -29,7 +29,7 @@ import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister'
 import React from 'react'
 import { Toaster } from 'react-hot-toast'
-
+import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -96,27 +96,29 @@ export function OmnivoreApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter()
 
   return (
-    <ConditionalCaptchaProvider>
-      <Toaster />
-      <PersistQueryClientProvider
-        client={queryClient}
-        persistOptions={{ persister: asyncStoragePersister }}
-      >
-        <KBarProvider actions={generateActions(router)}>
-          <KBarPortal>
-            <KBarPositioner style={{ zIndex: 100 }}>
-              <KBarAnimator style={animatorStyle}>
-                <KBarSearch style={searchStyle} />
-                <KBarResultsComponents />
-              </KBarAnimator>
-            </KBarPositioner>
-          </KBarPortal>
-          <IdProvider>
-            <Component {...pageProps} />
-          </IdProvider>
-        </KBarProvider>
-      </PersistQueryClientProvider>
-    </ConditionalCaptchaProvider>
+    <AppCacheProvider >
+      <ConditionalCaptchaProvider>
+        <Toaster />
+        <PersistQueryClientProvider
+          client={queryClient}
+          persistOptions={{ persister: asyncStoragePersister }}
+        >
+          <KBarProvider actions={generateActions(router)}>
+            <KBarPortal>
+              <KBarPositioner style={{ zIndex: 100 }}>
+                <KBarAnimator style={animatorStyle}>
+                  <KBarSearch style={searchStyle} />
+                  <KBarResultsComponents />
+                </KBarAnimator>
+              </KBarPositioner>
+            </KBarPortal>
+            <IdProvider>
+              <Component {...pageProps} />
+            </IdProvider>
+          </KBarProvider>
+        </PersistQueryClientProvider>
+      </ConditionalCaptchaProvider>
+    </AppCacheProvider>
   )
 }
 

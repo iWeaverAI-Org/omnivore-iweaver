@@ -16,8 +16,15 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
+    "@emotion/cache": "^11.13.5",
+    "@emotion/react": "^11.13.5",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.13.5",
     "@floating-ui/react": "^0.26.9",
     "@google-recaptcha/react": "^1.0.3",
+    "@mui/icons-material": "^6.1.9",
+    "@mui/material": "^6.1.9",
+    "@mui/material-nextjs": "^6.1.9",
     "@phosphor-icons/react": "^2.1.5",
     "@radix-ui/react-avatar": "^0.1.1",
     "@radix-ui/react-checkbox": "^0.1.5",
