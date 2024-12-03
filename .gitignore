@@ -32,7 +32,7 @@ package-lock.json
 
 # dotenv environment variables file
 .env
-# .env.local
+.env.local
 .env.production
 
 
