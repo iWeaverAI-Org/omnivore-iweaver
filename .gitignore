@@ -70,7 +70,9 @@ data.json
 *.aab
 *.apk
 
-# local
+# docker-compose
 docker-compose-local.yml
+docker-compose-iweaver-test.yml
+docker-compose-iweaver.yml
 
 tsconfig.tsbuildinfo
