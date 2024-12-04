@@ -47,17 +47,11 @@ async function fetchApplePublicKey(kid: string): Promise<string | null> {
 export async function decodeAppleToken(
   token: string
 ): Promise<DecodeTokenResult> {
-  console.log(`decodeAppleToken.token --> ${token}`)
-
   const decodedToken = jwt.decode(token, { complete: true })
   const { kid, alg } = (decodedToken as any).header
 
-  console.log(`decodeAppleToken.kid --> ${kid} ${alg}`)
-
   try {
     const publicKey = await fetchApplePublicKey(kid)
-
-    console.log(`decodeAppleToken.publicKey --> ${publicKey}`)
 
     if (!publicKey) {
       return { errorCode: 500 }
@@ -65,7 +59,9 @@ export async function decodeAppleToken(
 
     const jwtClaims: any = jwt.verify(token, publicKey, { algorithms: [alg] })
 
-    console.log(`decodeAppleToken.jwtClaims --> ${jwtClaims}`)
+    console.log(`decodeAppleToken.jwtClaims.iss --> ${jwtClaims.iss}`)
+    console.log(`decodeAppleToken.jwtClaims.aud --> ${jwtClaims.aud}`)
+    console.log(`decodeAppleToken.jwtClaims.email --> ${jwtClaims.email}`)
 
     const issVerified = (jwtClaims.iss ?? '') === appleBaseURL
     const audience = jwtClaims.aud ?? ''
