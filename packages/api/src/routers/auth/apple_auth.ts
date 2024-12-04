@@ -19,8 +19,8 @@ import {
 import { DEFAULT_HOME_PATH } from '../../utils/navigation'
 
 const appleBaseURL = 'https://appleid.apple.com'
-const audienceName = 'app.omnivore.app'
-const webAudienceName = 'app.omnivore'
+const audienceName = 'iwaverserver'
+const webAudienceName = 'iwaverserver'
 
 async function fetchApplePublicKey(kid: string): Promise<string | null> {
   const client = jwksClient({
@@ -58,11 +58,6 @@ export async function decodeAppleToken(
     }
 
     const jwtClaims: any = jwt.verify(token, publicKey, { algorithms: [alg] })
-
-    console.log(`decodeAppleToken.jwtClaims.iss --> ${jwtClaims.iss}`)
-    console.log(`decodeAppleToken.jwtClaims.aud --> ${jwtClaims.aud}`)
-    console.log(`decodeAppleToken.jwtClaims.email --> ${jwtClaims.email}`)
-
     const issVerified = (jwtClaims.iss ?? '') === appleBaseURL
     const audience = jwtClaims.aud ?? ''
     const audVerified = audience == webAudienceName || audience === audienceName
