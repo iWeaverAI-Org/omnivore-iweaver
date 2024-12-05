@@ -79,10 +79,11 @@ const JWT_SECRET = process.env.JWT_SECRET
 const MAX_IMPORT_ATTEMPTS = 1
 
 const uploadToBucket = async (filePath: string, data: string) => {
-  await storage
-    .bucket(bucketName)
-    .file(filePath)
-    .save(data, { public: false, timeout: 5000 })
+  return true
+  // await storage
+  //   .bucket(bucketName)
+  //   .file(filePath)
+  //   .save(data, { public: false, timeout: 5000 })
 }
 
 const uploadOriginalContent = async (

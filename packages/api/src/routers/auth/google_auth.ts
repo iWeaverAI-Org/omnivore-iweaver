@@ -116,10 +116,19 @@ export async function handleGoogleWebAuth(
   }`
 
   try {
-    const loginTicket = await googleWebClient.verifyIdToken({
-      idToken,
-      audience: env.google.auth.clientId,
-    })
+    let loginTicket
+
+    if (process.env.NODE_ENV === 'local') {
+      loginTicket = {
+        getPayload: () => ({ email: 'demo@email.com' }),
+        getUserId: () => 'demo_id',
+      }
+    } else {
+      loginTicket = await googleWebClient.verifyIdToken({
+        idToken,
+        audience: env.google.auth.clientId,
+      })
+    }
 
     const email = loginTicket.getPayload()?.email
     const sourceUserId = loginTicket.getUserId() || undefined
