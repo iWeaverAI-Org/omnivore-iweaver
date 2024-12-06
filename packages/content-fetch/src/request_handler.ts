@@ -79,8 +79,6 @@ const JWT_SECRET = process.env.JWT_SECRET
 const MAX_IMPORT_ATTEMPTS = 1
 
 const uploadToBucket = async (filePath: string, data: string) => {
-  console.log(`uploadToBucket.bucket: ${process.env.GCS_UPLOAD_BUCKET}`)
-  console.log(`uploadToBucket.file: ${process.env.GCS_UPLOAD_SA_KEY_FILE_PATH}`)
   await storage
     .bucket(bucketName)
     .file(filePath)
