@@ -38,7 +38,7 @@ RUN yarn workspace @omnivore/content-handler build
 RUN yarn workspace @omnivore/puppeteer-parse build
 RUN yarn workspace @omnivore/content-fetch build
 
-COPY gcs_omnivore-iweaver.sa.json ./packages/content-fetch/build/src/gcs_omnivore-iweaver.sa.json
+COPY gcs_omnivore-iweaver.sa.json ./packages/content-fetch/gcs_omnivore-iweaver.sa.json
 
 # After building, fetch the production dependencies
 RUN rm -rf /app/packages/content-fetch/node_modules
