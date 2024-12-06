@@ -60,7 +60,7 @@ COPY --from=builder /app/packages/text-to-speech/ /app/packages/text-to-speech/
 COPY --from=builder /app/packages/content-handler/ /app/packages/content-handler/
 COPY --from=builder /app/packages/liqe/ /app/packages/liqe/
 COPY --from=builder /app/packages/utils/ /app/packages/utils/
-COPY --from=builder gcs_omnivore-iweaver.sa.json /app/api/gcs_omnivore-iweaver.sa.json
+COPY --from=builder /app/gcs_omnivore-iweaver.sa.json /app/api/gcs_omnivore-iweaver.sa.json
 EXPOSE 8080
 
 CMD ["yarn", "workspace", "@omnivore/api", "start_queue_processor"]
