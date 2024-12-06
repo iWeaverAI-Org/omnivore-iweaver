@@ -51,7 +51,7 @@ export function TickedRangeSlider({
         position: 'relative',
       }}
     >
-      <StyledSlider
+      {/* <StyledSlider
         max={max}
         min={min}
         step={step}
@@ -66,7 +66,7 @@ export function TickedRangeSlider({
           <Box css={{ bg: '#CECECE', width: '2.5px', height: '100%' }} />
         </Track>
         <Thumb className="SliderThumb" />
-      </StyledSlider>
+      </StyledSlider> */}
     </HStack>
   )
 }
