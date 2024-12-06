@@ -10,7 +10,7 @@ COPY yarn.lock .
 COPY tsconfig.json .
 COPY .prettierrc .
 COPY .eslintrc .
-COPY .gcs_omnivore-iweaver.sa.json .
+COPY gcs_omnivore-iweaver.sa.json .
 
 COPY /packages/readabilityjs/package.json ./packages/readabilityjs/package.json
 COPY /packages/api/package.json ./packages/api/package.json
