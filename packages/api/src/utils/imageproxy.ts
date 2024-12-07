@@ -13,19 +13,25 @@ export function createImageProxyUrl(
   width = 0,
   height = 0
 ): string {
-  if (!env.imageProxy.url || !env.imageProxy.secretKey) {
+  // if (!env.imageProxy.url || !env.imageProxy.secretKey) {
+  //   return url
+  // }
+
+  // // url is already signed
+  // if (url.startsWith(env.imageProxy.url)) {
+  //   return url
+  // }
+
+  // const urlWithOptions = `${url}#${width}x${height}`
+  // const signature = signImageProxyUrl(urlWithOptions)
+
+  // return `${env.imageProxy.url}/${width}x${height},s${signature}/${url}`
+
+  if (!env.imageProxy.url) {
     return url
   }
 
-  // url is already signed
-  if (url.startsWith(env.imageProxy.url)) {
-    return url
-  }
-
-  const urlWithOptions = `${url}#${width}x${height}`
-  const signature = signImageProxyUrl(urlWithOptions)
-
-  return `${env.imageProxy.url}/${width}x${height},s${signature}/${url}`
+  return `${env.imageProxy.url}/${encodeURIComponent(url)}`
 }
 
 export const createThumbnailProxyUrl = (url: string): string =>

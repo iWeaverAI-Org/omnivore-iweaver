@@ -100,11 +100,8 @@ function getPurifiedContent(html: string) {
 }
 
 function createImageProxyUrl(url: string, width = 0, height = 0) {
-  if (process.env.IMAGE_PROXY_URL && process.env.IMAGE_PROXY_SECRET) {
-    const urlWithOptions = `${url}#${width}x${height}`
-    const signature = signImageProxyUrl(urlWithOptions)
-
-    return `${process.env.IMAGE_PROXY_URL}/${width}x${height},s${signature}/${url}`
+  if (process.env.IMAGE_PROXY_URL) {
+    return `${process.env.IMAGE_PROXY_URL}/${encodeURIComponent(url)}`
   }
   return url
 }
