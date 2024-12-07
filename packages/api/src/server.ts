@@ -21,6 +21,7 @@ import { aiSummariesRouter } from './routers/ai_summary_router'
 import { articleRouter } from './routers/article_router'
 import { authRouter } from './routers/auth/auth_router'
 import { mobileAuthRouter } from './routers/auth/mobile/mobile_auth_router'
+import { imageProxyRouter } from './routers/svc/image_proxy'
 import { contentRouter } from './routers/content_router'
 import { digestRouter } from './routers/digest_router'
 import { explainRouter } from './routers/explain_router'
@@ -95,7 +96,9 @@ export const createApp = (): Express => {
   app.get('/_ah/health', (req, res) => res.sendStatus(200))
 
   app.use('/api/auth', authLimiter, authRouter())
+
   app.use('/api/mobile-auth', authLimiter, mobileAuthRouter())
+  app.use('/api/image-proxy', imageProxyRouter())
   app.use('/api/page', pageRouter())
   app.use('/api/shortcuts', shortcutsRouter())
   app.use('/api/article', articleRouter())

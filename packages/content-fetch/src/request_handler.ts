@@ -64,6 +64,22 @@ const storage = process.env.GCS_UPLOAD_SA_KEY_FILE_PATH
   : new Storage()
 const bucketName = process.env.GCS_UPLOAD_BUCKET || 'omnivore-files'
 
+storage
+  .bucket(bucketName)
+  .setCorsConfiguration([
+    {
+      maxAgeSeconds: 3600,
+      method: ['GET', 'POST', 'PUT'],
+      origin: [
+        'https://omnivore-test.iweaver.ai',
+        'https://omnivore.iweaver.ai',
+      ],
+      responseHeader: ['Content-Type', 'x-goog-resumable'],
+    },
+  ])
+  .then(console.log)
+  .catch(console.error)
+
 const NO_CACHE_URLS = [
   'https://deviceandbrowserinfo.com/are_you_a_bot',
   'https://deviceandbrowserinfo.com/info_device',
