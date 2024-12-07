@@ -13,6 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ColorModeIconDropdown from '../shared-theme/ColorModeIconDropdown';
 import { Logo } from './Logo';
+import { useRouter } from 'next/router';
 
 const StyledToolbar = styled(Toolbar)(({ theme }: any) => ({
   display: 'flex',
@@ -31,6 +32,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }: any) => ({
 }));
 
 export default function AppAppBar() {
+  const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -52,11 +54,11 @@ export default function AppAppBar() {
         <StyledToolbar variant="dense" disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Logo />
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+            {/* <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
               <Button variant="text" color="info" size="small">
                 Home
               </Button>
-            </Box>
+            </Box> */}
           </Box>
           <Box
             sx={{
@@ -65,11 +67,8 @@ export default function AppAppBar() {
               alignItems: 'center',
             }}
           >
-            <Button color="primary" variant="text" size="small">
+            <Button color="primary" variant="contained" size="small" onClick={() => router.push('/login')}>
               Sign in
-            </Button>
-            <Button color="primary" variant="contained" size="small">
-              Sign up
             </Button>
             <ColorModeIconDropdown />
           </Box>

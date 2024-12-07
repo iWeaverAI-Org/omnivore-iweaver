@@ -42,3 +42,5 @@ yarn-error.log*
 .env.sentry-build-plugin
 
 .next
+
+certificates

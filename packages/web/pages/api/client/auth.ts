@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { serialize } from 'cookie'
 import * as jwt from 'jsonwebtoken'
-import { ssoJwtSecret } from '../../../lib/appConfig'
+import { ssoJwtSecret,fetchEndpoint } from '../../../lib/appConfig'
 import { DEFAULT_HOME_PATH } from '../../../lib/navigations'
 
 type AuthPayload = {
@@ -12,6 +12,7 @@ type AuthPayload = {
 const requestHandler = (req: NextApiRequest, res: NextApiResponse): void => {
   const cookieOptions = {
     httpOnly: true,
+    domain: new URL(fetchEndpoint).hostname,
     secure: true,
     maxAge: 365 * 24 * 60 * 60 * 1000,
     path: '/',
