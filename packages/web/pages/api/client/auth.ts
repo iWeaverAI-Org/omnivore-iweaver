@@ -13,7 +13,7 @@ const requestHandler = (req: NextApiRequest, res: NextApiResponse): void => {
   const cookieOptions = {
     httpOnly: true,
     domain: new URL(fetchEndpoint).hostname,
-    secure: true,
+    secure: false,
     maxAge: 365 * 24 * 60 * 60 * 1000,
     path: '/',
   }
