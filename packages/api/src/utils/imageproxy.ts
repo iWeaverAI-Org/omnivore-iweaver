@@ -13,6 +13,7 @@ export function createImageProxyUrl(
   width = 0,
   height = 0
 ): string {
+  console.log(`createImageProxyUrl ---> ${env.imageProxy.url}`)
   // if (!env.imageProxy.url || !env.imageProxy.secretKey) {
   //   return url
   // }
