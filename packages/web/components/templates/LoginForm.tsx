@@ -102,14 +102,14 @@ export function LoginForm(props: LoginFormProps): JSX.Element {
             />
           </Box>
         )}
-        {/* <Link href="/auth/email-login" passHref legacyBehavior>
+        <Link href="/auth/email-login" passHref legacyBehavior>
           <StyledTextSpan
             style="actionLink"
             css={{ color: '#EDEDED', pt: '12px' }}
           >
             Continue with Email
           </StyledTextSpan>
-        </Link> */}
+        </Link>
       </VStack>
       <TermAndConditionsFooter />
     </VStack>
