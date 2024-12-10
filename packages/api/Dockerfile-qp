@@ -48,7 +48,7 @@ WORKDIR /app
 
 ENV NODE_ENV production
 ENV NODE_OPTIONS=--max-old-space-size=4096
-ENV PORT=8080
+ENV PORT=3002
 
 COPY --from=builder /app/packages/api/dist /app/packages/api/dist
 COPY --from=builder /app/packages/readabilityjs/ /app/packages/readabilityjs/
@@ -61,6 +61,6 @@ COPY --from=builder /app/packages/content-handler/ /app/packages/content-handler
 COPY --from=builder /app/packages/liqe/ /app/packages/liqe/
 COPY --from=builder /app/packages/utils/ /app/packages/utils/
 COPY --from=builder /app/gcs_omnivore-iweaver.sa.json /app/packages/api/gcs_omnivore-iweaver.sa.json
-EXPOSE 8080
+EXPOSE 3002
 
 CMD ["yarn", "workspace", "@omnivore/api", "start_queue_processor"]
