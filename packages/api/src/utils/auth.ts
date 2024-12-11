@@ -160,6 +160,8 @@ export const generateVerificationToken = async (
     env.server.jwtSecret
   )
 
+  console.log(`generateVerificationToken: ${expireInSeconds} / ${token}`)
+
   await redisDataSource.redisClient?.set(
     verificationTokenKey(token),
     user.id,
