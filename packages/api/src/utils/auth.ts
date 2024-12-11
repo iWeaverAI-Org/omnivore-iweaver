@@ -147,7 +147,7 @@ export const generateVerificationToken = async (
     id: string
     email?: string
   },
-  expireInSeconds = 60, // 1 minute
+  expireInSeconds = 60 * 10, // 10 minute
   destroyAfterUse = true
 ): Promise<string> => {
   const iat = Math.floor(Date.now() / 1000)
