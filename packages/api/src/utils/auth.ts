@@ -124,6 +124,7 @@ export const getClaimsByToken = async (
 const verificationTokenKey = (token: string) => `verification:${token}`
 
 export const verifyToken = async (token: string): Promise<Claims> => {
+  console.log(`verifyToken: ${token}`)
   const redisClient = redisDataSource.redisClient
   const key = verificationTokenKey(token)
   if (redisClient) {
